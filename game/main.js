@@ -18,13 +18,7 @@ alltd.forEach(item => {
   })
 })
 
-
-
-// btn.addEventListener('click', sendnumber)
-// numbers.forEach((num) =>{
-//   num.addEventListener('click', sendnumber);
-// })
-numbers.forEach((num) =>{
+numbers.forEach((num) => {
   num.addEventListener('click', sendnumber);
 })
 
@@ -32,38 +26,46 @@ numbers.forEach((num) =>{
 let buttonTextContent;
 function sendnumber() {
   let buttonTextContent = this.textContent;
-  if(btn.checked){
+  if (btn.checked) {
     console.log('check')
 
-check(buttonTextContent)      
-      
-      }
-      else{
-        nocheck(buttonTextContent)
-        console.log('no check')
-      }
-  
+    check(buttonTextContent)
+
+  }
+  else {
+    nocheck(buttonTextContent)
+    console.log('no check')
+  }
+
+}
+
+let result
+function check(buttonTextContent) {
+  span.forEach(item => {
+    if (item.parentElement.className == "selected") {
+      result = item.innerHTML.split('');  /*convert str to arr */
+
+    }
+    if (result.includes(`${buttonTextContent}`)) {
+      result[result.indexOf(buttonTextContent)] = '';
+      result.sort();
+      item.innerHTML = `${result.join('')}`; /*convert arr to str */
+    }
+    else {
+      result.push(buttonTextContent);
+      result.sort();
+      item.innerHTML = `${result.join('')}`;
     }
 
+  })
+}
 
-      function check (buttonTextContent){
+function nocheck(buttonTextContent) {
+  value.forEach(i => {
+    if (i.parentElement.className == "selected") {
+      i.innerHTML = `${buttonTextContent}`
+    }
 
-            console.log('fcjkvrgvkr')
-            span.forEach(i => {
-                if (i.parentElement.className == "selected") {
-                  i.innerHTML = `${buttonTextContent}`
-                }
-            
-              })
-          }
-              
-function nocheck (buttonTextContent){
-      value.forEach(i => {
-          if (i.parentElement.className == "selected") {
-            i.innerHTML = `${buttonTextContent}`
-          }
-      
-        })
-      }
-          
-          
+  })
+}
+
