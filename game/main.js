@@ -22,8 +22,7 @@ numbers.forEach((num) => {
   num.addEventListener('click', sendnumber);
 })
 
-
-let buttonTextContent;
+let result=[]
 function sendnumber() {
   let buttonTextContent = this.textContent;
   if (btn.checked) {
@@ -39,13 +38,13 @@ function sendnumber() {
 
 }
 
-let result
+
 function check(buttonTextContent) {
   span.forEach(item => {
-    if (item.parentElement.className == "selected") {
+    if (item.parentElement.className === "selected") {
       result = item.innerHTML.split('');  /*convert str to arr */
 
-    }
+    
     if (result.includes(`${buttonTextContent}`)) {
       result[result.indexOf(buttonTextContent)] = '';
       result.sort();
@@ -55,17 +54,19 @@ function check(buttonTextContent) {
       result.push(buttonTextContent);
       result.sort();
       item.innerHTML = `${result.join('')}`;
-    }
+      console.log(item)
+    }}
 
   })
 }
 
 function nocheck(buttonTextContent) {
   value.forEach(i => {
-    if (i.parentElement.className == "selected") {
+    if (i.parentElement.className ==="selected") {
       i.innerHTML = `${buttonTextContent}`
     }
 
   })
 }
+
 
